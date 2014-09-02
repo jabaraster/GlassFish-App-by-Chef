@@ -1,11 +1,29 @@
 {
-  "nginx": {
-    "port": 80
-  },
-  "run_list": [
-    "nginx"
-  ],
-  "automatic": {
-    "ipaddress": "FirstChef"
-  }
+    //  "nginx": {
+    //    "port": 80
+    //  },
+    "java": {
+        "jdk_version": 7
+    },
+    "glassfish": {
+        "version": "3.1.2.2",
+        "domains": {
+            "myapp": {
+                "config": {
+                    "remote_access": true,
+                    "secure": false,
+                    "username": "admin",
+                    "password": "admin"
+                }
+            }
+        }
+    },
+    "run_list": [
+        "java::default",
+        "glassfish::default",
+        "glassfish::attribute_driven_domain"
+    ],
+    "automatic": {
+        "ipaddress": "FirstChef"
+    }
 }

@@ -1,0 +1,53 @@
+{
+    "java": {
+        "jdk_version": 7
+    },
+    "glassfish": {
+        "version": "3.1.2.2",
+        "domains": {
+            "myapp": {
+                "config": {
+                    "remote_access": true,
+                    "secure": false,
+                    "username": "admin",
+                    "password": "admin"
+                },
+                "extra_libraries": {
+                    "jdbc_driver": {
+                        "type": "common",
+                        "url": "http://repo1.maven.org/maven2/org/postgresql/postgresql/9.3-1102-jdbc41/postgresql-9.3-1102-jdbc41.jar"
+                    }
+                },
+                "jdbc_connection_pools": {
+                    "AppPool": {
+                        "config": {
+                            "datasourceclassname": "org.postgresql.ds.PGConnectionPoolDataSource",
+                            "restype": "javax.sql.ConnectionPoolDataSource",
+                            "ping": "true",
+                            "description": "App Pool",
+                            "properties": {
+                                "User": "appuser",
+                                "DatabaseName": "appdb",
+                                "Password": "apppass",
+                                "ServerName": "localhost"
+                            }
+                        },
+                        "resources": {
+                            "jdbc/App": {
+                                "description": "JDBC connection pool resource."
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "run_list": [
+        "java::default",
+        "glassfish::default",
+        "glassfish::attribute_driven_domain"
+    ],
+    "automatic": {
+        "ipaddress": "chef"
+    }
+}
