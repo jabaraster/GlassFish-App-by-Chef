@@ -1,0 +1,11 @@
+{
+    "postgresql": {
+        "version": "9"
+    },
+    "run_list": [
+        "postgresql"
+    ],
+    "automatic": {
+        "ipaddress": "postgre"
+    }
+}
